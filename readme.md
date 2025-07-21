@@ -1,20 +1,7 @@
-<div align="center">
-  [![Contributors][contributors-shield]][contributors-url]
-  [![Forks][forks-shield]][forks-url]
-  [![WTFPL License][license-shield]][license-url]
-  
-  <div>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" alt="Godot Engine" width="100">
-  </div>
-</div>
 
-<!-- SHIELDS -->
-[contributors-shield]: https://img.shields.io/github/contributors/dash4k/gemasik2025?style=flat-square&color=%23ADD8E6
-[contributors-url]: https://github.com/dash4k/gemasik2025/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/dash4k/gemasik2025?style=flat-square&color=%23ADD8E6
-[forks-url]: https://github.com/dash4k/gemasik2025/fork
-[license-shield]: https://img.shields.io/github/license/dash4k/gemasik2025?style=flat-square&color=%23ADD8E6
-[license-url]: https://github.com/dash4k/gemasik2025/blob/main/LICENSE
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" alt="Godot Engine" width="100">
+</div>
 
 <h1 align="center">SUPERB GEMASTIK GAME UNUD REPO 2025 🚀</h1>
 
@@ -24,6 +11,17 @@
 </p>
 
 ---
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![WTFPL License][license-shield]][license-url]
+
+<!-- SHIELDS -->
+[contributors-shield]: https://img.shields.io/github/contributors/dash4k/gemastik2025?style=flat-square&color=%23ADD8E6
+[contributors-url]: https://github.com/dash4k/gemastik2025/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/dash4k/gemastik2025?style=flat-square&color=%23ADD8E6
+[forks-url]: https://github.com/dash4k/gemastik2025/fork
+[license-shield]: https://img.shields.io/github/license/dash4k/gemastik2025?style=flat-square&color=%23ADD8E6
+[license-url]: https://github.com/dash4k/gemastik2025/blob/main/LICENSE
 
 ## 📦 Clone & Run
 
