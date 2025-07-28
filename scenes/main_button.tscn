@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c64irxkuhq0xy"]
+
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/button_shadow.gdshader" id="1_xh7fg"]
+[ext_resource type="Texture2D" uid="uid://dnbxxomvsrotf" path="res://assets/images/button_blue.png" id="2_mi41b"]
+[ext_resource type="Script" uid="uid://c1qq0u1ed0stf" path="res://continue_button.gd" id="3_cl0ml"]
+[ext_resource type="FontFile" uid="uid://dxbcx6b0jjddl" path="res://assets/fonts/Lexend.ttf" id="4_rbk1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xvtu"]
+shader = ExtResource("1_xh7fg")
+shader_parameter/drop_shadow_color = Color(0.1, 0.1, 0.1, 0.4)
+shader_parameter/shadow_offset = Vector2(0, 0.1)
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+shader_parameter/press_depth = 3.0
+
+[node name="Button" type="TextureButton"]
+material = SubResource("ShaderMaterial_3xvtu")
+custom_minimum_size = Vector2(300, 80)
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_mi41b")
+stretch_mode = 5
+script = ExtResource("3_cl0ml")
+route = null
+text = ""
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_rbk1v")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
