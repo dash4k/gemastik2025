@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctleto53yhthx"]
+
+[ext_resource type="Texture2D" uid="uid://djk5ii57adlfq" path="res://assets/images/pause/pause_tab.png" id="1_7l7mv"]
+[ext_resource type="Texture2D" uid="uid://cacf3s80uuwu0" path="res://assets/images/pause/pause_header.png" id="2_v4r4p"]
+[ext_resource type="FontFile" uid="uid://dxbcx6b0jjddl" path="res://assets/fonts/Lexend.ttf" id="3_1s2dm"]
+[ext_resource type="PackedScene" uid="uid://c64irxkuhq0xy" path="res://scenes/main_button.tscn" id="4_88e76"]
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/simple_button.gdshader" id="5_knqa7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7l7mv"]
+shader = ExtResource("5_knqa7")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4r4p"]
+shader = ExtResource("5_knqa7")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s2dm"]
+shader = ExtResource("5_knqa7")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_88e76"]
+shader = ExtResource("5_knqa7")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.313726)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.27875
+anchor_top = 0.0807407
+anchor_right = 0.72125
+anchor_bottom = 0.919259
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7l7mv")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_v4r4p")
+
+[node name="Panel" type="MarginContainer" parent="TextureRect/VBoxContainer/TextureRect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="TextureRect/VBoxContainer/TextureRect/Panel"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1s2dm")
+theme_override_font_sizes/font_size = 20
+text = "Pause"
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ContinueButton" parent="TextureRect/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_88e76")]
+material = SubResource("ShaderMaterial_7l7mv")
+layout_mode = 2
+text = "Continue"
+
+[node name="StartButton" parent="TextureRect/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_88e76")]
+material = SubResource("ShaderMaterial_v4r4p")
+layout_mode = 2
+text = "Restrat"
+
+[node name="LevelsButton" parent="TextureRect/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_88e76")]
+material = SubResource("ShaderMaterial_1s2dm")
+layout_mode = 2
+text = "Setting"
+
+[node name="SettingButton" parent="TextureRect/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_88e76")]
+material = SubResource("ShaderMaterial_88e76")
+layout_mode = 2
+text = "Main Menu"

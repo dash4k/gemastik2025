@@ -1,17 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c64irxkuhq0xy"]
+[gd_scene load_steps=7 format=3 uid="uid://c64irxkuhq0xy"]
 
-[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/button_shadow.gdshader" id="1_xh7fg"]
-[ext_resource type="Texture2D" uid="uid://dnbxxomvsrotf" path="res://assets/images/button_blue.png" id="2_mi41b"]
-[ext_resource type="Script" uid="uid://c1qq0u1ed0stf" path="res://continue_button.gd" id="3_cl0ml"]
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/simple_button.gdshader" id="1_xh7fg"]
+[ext_resource type="Texture2D" uid="uid://dnbxxomvsrotf" path="res://assets/images/ui/button_blue.png" id="2_mi41b"]
+[ext_resource type="Script" uid="uid://c1qq0u1ed0stf" path="res://scripts/continue_button.gd" id="3_cl0ml"]
 [ext_resource type="FontFile" uid="uid://dxbcx6b0jjddl" path="res://assets/fonts/Lexend.ttf" id="4_rbk1v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3xvtu"]
 shader = ExtResource("1_xh7fg")
-shader_parameter/drop_shadow_color = Color(0.1, 0.1, 0.1, 0.4)
-shader_parameter/shadow_offset = Vector2(0, 0.1)
 shader_parameter/hovering = 0.0
 shader_parameter/pressed = 0.0
-shader_parameter/press_depth = 3.0
+
+[sub_resource type="PackedScene" id="PackedScene_3xvtu"]
 
 [node name="Button" type="TextureButton"]
 material = SubResource("ShaderMaterial_3xvtu")
@@ -20,7 +19,7 @@ size_flags_horizontal = 4
 texture_normal = ExtResource("2_mi41b")
 stretch_mode = 5
 script = ExtResource("3_cl0ml")
-route = null
+route = SubResource("PackedScene_3xvtu")
 text = ""
 
 [node name="Label" type="Label" parent="."]

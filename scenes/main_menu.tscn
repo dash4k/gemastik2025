@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://drb48xeife4c4"]
+
+[ext_resource type="Script" uid="uid://bmlhn4g3au7w7" path="res://main_scene.gd" id="1_c16ls"]
+[ext_resource type="Texture2D" uid="uid://cr3yyxrp1hccq" path="res://assets/images/ui/wallpaper.png" id="2_18nlu"]
+[ext_resource type="PackedScene" uid="uid://c64irxkuhq0xy" path="res://scenes/main_button.tscn" id="3_c1pb6"]
+[ext_resource type="PackedScene" uid="uid://dj4a2icc1uh3s" path="res://scenes/level_1.tscn" id="5_c16ls"]
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/simple_button.gdshader" id="5_e1cbu"]
+[ext_resource type="Texture2D" uid="uid://ca7dh3nuxipqc" path="res://assets/images/ui/cover.png" id="6_mngbo"]
+[ext_resource type="AudioStream" uid="uid://be575d1px1lq8" path="res://assets/musics/main_menu.mp3" id="7_4w45t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66tet"]
+shader = ExtResource("5_e1cbu")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oa1go"]
+shader = ExtResource("5_e1cbu")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbmy8"]
+shader = ExtResource("5_e1cbu")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
+shader = ExtResource("5_e1cbu")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dd4i"]
+shader = ExtResource("5_e1cbu")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[node name="MainScene" type="Control"]
+custom_minimum_size = Vector2(1200, 675)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_c16ls")
+
+[node name="Wallpaper" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_18nlu")
+
+[node name="MenuContainer" type="VBoxContainer" parent="Wallpaper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.381024
+anchor_top = 0.120482
+anchor_right = 0.618976
+anchor_bottom = 0.879518
+offset_left = -3.05176e-05
+offset_right = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+metadata/_edit_use_anchors_ = true
+
+[node name="Cover" type="TextureRect" parent="Wallpaper/MenuContainer"]
+material = SubResource("ShaderMaterial_66tet")
+layout_mode = 2
+texture = ExtResource("6_mngbo")
+
+[node name="MenuButtonContainer" type="VBoxContainer" parent="Wallpaper/MenuContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="ContinueButton" parent="Wallpaper/MenuContainer/MenuButtonContainer" instance=ExtResource("3_c1pb6")]
+material = SubResource("ShaderMaterial_oa1go")
+layout_mode = 2
+route = ExtResource("5_c16ls")
+text = "Continue"
+
+[node name="StartButton" parent="Wallpaper/MenuContainer/MenuButtonContainer" instance=ExtResource("3_c1pb6")]
+material = SubResource("ShaderMaterial_tbmy8")
+layout_mode = 2
+route = ExtResource("5_c16ls")
+text = "Start"
+
+[node name="LevelsButton" parent="Wallpaper/MenuContainer/MenuButtonContainer" instance=ExtResource("3_c1pb6")]
+material = SubResource("ShaderMaterial_jk1qb")
+layout_mode = 2
+route = null
+text = "Levels"
+
+[node name="SettingButton" parent="Wallpaper/MenuContainer/MenuButtonContainer" instance=ExtResource("3_c1pb6")]
+material = SubResource("ShaderMaterial_5dd4i")
+layout_mode = 2
+route = null
+text = "Setting"
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_4w45t")
+volume_db = 13.117
+parameters/looping = true

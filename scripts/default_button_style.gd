@@ -1,22 +1,11 @@
-@tool
 extends TextureButton
+class_name DefaultButton
 
 @onready var mat := material as ShaderMaterial
-@onready var label: Label = $Label
-@export var route : PackedScene = preload("res://scenes/main_scene.tscn")
-@export var text: String = "Button" :
-	set(value):
-		_text = value
-		if is_instance_valid(label):
-			label.text = value
-	get:
-		return _text
-
-var _text := text  # backing field for the exported variable
 
 func _ready():
-	label.text = text
-
+	_ready_addon()
+	
 	self.material = (self.material as ShaderMaterial).duplicate()
 	mat = self.material
 
@@ -32,11 +21,15 @@ func _on_hover_exited():
 	mat.set_shader_parameter("hovering", 0.0)
 
 func _on_pressed():
-	print("di script awal berhasil")
 	mat.set_shader_parameter("pressed", 1.0)
+	await get_tree().create_timer(0.3).timeout
+	_on_pressed_do()
 
 func _on_released():
 	mat.set_shader_parameter("pressed", 0.0)
-	var instance = route.instantiate()
-	get_tree().root.add_child(instance)
-	get_tree().current_scene.queue_free()
+
+func _on_pressed_do():
+	pass
+
+func _ready_addon():
+	pass

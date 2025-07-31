@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm2wsu8dqv3gt"]
+
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/simple_button.gdshader" id="1_gqh8d"]
+[ext_resource type="Script" uid="uid://bk8ecmkaupbvc" path="res://scripts/default_button_style.gd" id="2_5jl3p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqh8d"]
+shader = ExtResource("1_gqh8d")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[node name="DefaultButton" type="TextureButton"]
+material = SubResource("ShaderMaterial_gqh8d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5jl3p")

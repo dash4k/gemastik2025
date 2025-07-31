@@ -1,0 +1,146 @@
+[gd_scene load_steps=14 format=3 uid="uid://dj4a2icc1uh3s"]
+
+[ext_resource type="Texture2D" uid="uid://cr3yyxrp1hccq" path="res://assets/images/ui/wallpaper.png" id="1_014kd"]
+[ext_resource type="Texture2D" uid="uid://dsb4kgxdfyttq" path="res://assets/images/ui/desktop_bar.png" id="2_fcfvj"]
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/simple_button.gdshader" id="3_go7sj"]
+[ext_resource type="Texture2D" uid="uid://cbnx1odoxlp0" path="res://assets/images/icons/off_button.png" id="3_pa8r4"]
+[ext_resource type="Script" uid="uid://dd3ii4usfmmfw" path="res://scripts/chat_button.gd" id="4_2os1m"]
+[ext_resource type="Texture2D" uid="uid://cg3wd3o3rrkta" path="res://assets/images/icons/off_button_disabled.png" id="4_15mv3"]
+[ext_resource type="Texture2D" uid="uid://drh1t2ao1hec3" path="res://assets/images/icons/pause_button.png" id="5_e3sih"]
+[ext_resource type="Texture2D" uid="uid://cwm1qe0e8dg2w" path="res://assets/images/icons/icon.svg" id="6_2y5yt"]
+[ext_resource type="Texture2D" uid="uid://qwgvi1xw3yt0" path="res://assets/images/icons/chat.png" id="6_15mv3"]
+[ext_resource type="PackedScene" uid="uid://d4dbi43qnx5tp" path="res://scenes/chat_window.tscn" id="7_go7sj"]
+[ext_resource type="FontFile" uid="uid://dxbcx6b0jjddl" path="res://assets/fonts/Lexend.ttf" id="7_pa8r4"]
+[ext_resource type="AudioStream" uid="uid://be575d1px1lq8" path="res://assets/musics/main_menu.mp3" id="9_e3sih"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gny6"]
+shader = ExtResource("3_go7sj")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[node name="Level1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wallpaper" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_014kd")
+
+[node name="ScreenContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 12
+columns = 4
+
+[node name="Chat" type="VBoxContainer" parent="ScreenContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ChatButton" type="TextureButton" parent="ScreenContainer/Chat"]
+material = SubResource("ShaderMaterial_7gny6")
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("6_15mv3")
+stretch_mode = 4
+script = ExtResource("4_2os1m")
+default_icon = "res://assets/images/icons/chat.png"
+second_icon = "res://assets/images/icons/notification.png"
+
+[node name="ChatLabel" type="Label" parent="ScreenContainer/Chat"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_pa8r4")
+theme_override_font_sizes/font_size = 20
+text = "Chat"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="AI" type="VBoxContainer" parent="ScreenContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NoClueAIButton" type="TextureButton" parent="ScreenContainer/AI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("6_2y5yt")
+stretch_mode = 4
+
+[node name="NoClueAILabel" type="Label" parent="ScreenContainer/AI"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_pa8r4")
+theme_override_font_sizes/font_size = 20
+text = "NoClueAI"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ChatWindow" parent="." instance=ExtResource("7_go7sj")]
+visible = false
+layout_mode = 1
+offset_right = 128.776
+offset_bottom = 85.5464
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DesktopFooter" type="TextureRect" parent="."]
+top_level = true
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.902222
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_fcfvj")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftContainer" type="HBoxContainer" parent="DesktopFooter"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 65.0
+grow_vertical = 2
+
+[node name="OffButton" type="TextureButton" parent="DesktopFooter/LeftContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_pa8r4")
+texture_disabled = ExtResource("4_15mv3")
+stretch_mode = 5
+
+[node name="PauseButton" type="TextureButton" parent="DesktopFooter/LeftContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_e3sih")
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="DesktopFooter"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_e3sih")
+volume_db = 24.0
+autoplay = true
+parameters/looping = true

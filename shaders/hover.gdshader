@@ -29,7 +29,7 @@ void fragment() {
     float max_offset = max(abs(shadow_offset.x), abs(shadow_offset.y));
     vec2 uv = UV * (1.0 + 2.0 * max_offset) - vec2(max_offset);
     vec4 original_color = sample_texture(TEXTURE, uv);
-    
+
     // Determine final brightness based on state priority
     float final_brightness;
     if (pressed > 0.5) {
@@ -43,9 +43,9 @@ void fragment() {
         final_brightness = 1.0;
     }
     original_color.rgb *= final_brightness;
-    
+
     vec4 final_color = original_color;
-    
+
     // Show shadow only when not pressed
     if (pressed < 0.5) {
         vec4 shadow_color = vec4(
@@ -56,6 +56,6 @@ void fragment() {
             final_color = mixcolor(shadow_color, original_color);
         }
     }
-    
+
     COLOR = final_color;
 }

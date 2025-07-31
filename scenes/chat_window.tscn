@@ -1,0 +1,514 @@
+[gd_scene load_steps=23 format=3 uid="uid://d4dbi43qnx5tp"]
+
+[ext_resource type="Texture2D" uid="uid://bnew70cc3sjlg" path="res://assets/images/window/green_background.png" id="1_dkmu0"]
+[ext_resource type="Script" uid="uid://brpvgqahn706r" path="res://scenes/chat_window.gd" id="2_g6nof"]
+[ext_resource type="Texture2D" uid="uid://b8sobyneti4vm" path="res://assets/images/window/window_header.png" id="2_p5op4"]
+[ext_resource type="FontFile" uid="uid://dxbcx6b0jjddl" path="res://assets/fonts/Lexend.ttf" id="3_wj4sy"]
+[ext_resource type="Texture2D" uid="uid://cgr2ad67i60di" path="res://assets/images/window/minimize_button.png" id="4_b8eyb"]
+[ext_resource type="Shader" uid="uid://tyb8u6dl5e62" path="res://shaders/simple_button.gdshader" id="4_rfnst"]
+[ext_resource type="Texture2D" uid="uid://c5dx2fhaj5tka" path="res://assets/images/window/close_button.png" id="5_q74cj"]
+[ext_resource type="Script" uid="uid://dt2rouoifw8b3" path="res://scripts/minimize_button.gd" id="5_rfnst"]
+[ext_resource type="Script" uid="uid://ckf7mvc5nas21" path="res://scripts/close_button.gd" id="6_b8eyb"]
+[ext_resource type="Texture2D" uid="uid://bied26pcow6ko" path="res://assets/images/window/profile_list.png" id="6_rfnst"]
+[ext_resource type="Texture2D" uid="uid://yehdy22538f6" path="res://assets/images/window/selected_profile.png" id="7_g6nof"]
+[ext_resource type="Texture2D" uid="uid://c1br70dr1fdyr" path="res://assets/images/profiles/profile1.png" id="8_gemlu"]
+[ext_resource type="Texture2D" uid="uid://egm2qv5j34hl" path="res://assets/images/window/chat_background.png" id="9_ybb1h"]
+[ext_resource type="Texture2D" uid="uid://ccgbyegch0qtg" path="res://assets/images/window/text_bubble_arrow.png" id="10_cblkv"]
+[ext_resource type="Texture2D" uid="uid://degmvbphfqltc" path="res://assets/images/window/chat_bubble.png" id="11_b8ktl"]
+[ext_resource type="Script" uid="uid://utc4j4hhuy47" path="res://scripts/chat_bubble.gd" id="12_p5op4"]
+[ext_resource type="Texture2D" uid="uid://btqegymjeck50" path="res://assets/images/window/chat_footer.png" id="12_wneq3"]
+[ext_resource type="Texture2D" uid="uid://b0u7luatmrk5m" path="res://assets/images/window/input_bar.png" id="13_yvb3h"]
+[ext_resource type="Texture2D" uid="uid://74dlkliqxd3l" path="res://assets/images/window/send_button.png" id="15_wj4sy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6nof"]
+shader = ExtResource("4_rfnst")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gemlu"]
+shader = ExtResource("4_rfnst")
+shader_parameter/hovering = 0.0
+shader_parameter/pressed = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dkmu0"]
+
+[node name="ChatWindow" type="TextureButton"]
+anchors_preset = -1
+anchor_left = 0.247083
+anchor_top = 0.205185
+anchor_right = 0.752917
+anchor_bottom = 0.794815
+offset_left = 29.5
+offset_right = -29.5001
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_dkmu0")
+script = ExtResource("2_g6nof")
+metadata/_edit_use_anchors_ = true
+
+[node name="WindowContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+theme_override_constants/separation = -1
+
+[node name="WindowHeader" type="TextureRect" parent="WindowContainer"]
+layout_mode = 2
+texture = ExtResource("2_p5op4")
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="TitleContainer" type="MarginContainer" parent="WindowContainer/WindowHeader"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 36.0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+
+[node name="TitleLabel" type="Label" parent="WindowContainer/WindowHeader/TitleContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wj4sy")
+theme_override_font_sizes/font_size = 24
+text = "Chat"
+
+[node name="ButtonContainer" type="MarginContainer" parent="WindowContainer/WindowHeader"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_right = 20
+
+[node name="ButtonHorizontalContainer" type="HBoxContainer" parent="WindowContainer/WindowHeader/ButtonContainer"]
+layout_mode = 2
+
+[node name="MinimizeButton" type="TextureButton" parent="WindowContainer/WindowHeader/ButtonContainer/ButtonHorizontalContainer"]
+material = SubResource("ShaderMaterial_g6nof")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_b8eyb")
+stretch_mode = 4
+script = ExtResource("5_rfnst")
+window_name = "ChatWindow"
+
+[node name="CloseButton" type="TextureButton" parent="WindowContainer/WindowHeader/ButtonContainer/ButtonHorizontalContainer"]
+material = SubResource("ShaderMaterial_gemlu")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_q74cj")
+stretch_mode = 4
+script = ExtResource("6_b8eyb")
+window_name = "ChatWindow"
+
+[node name="WindowContent" type="HBoxContainer" parent="WindowContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -1
+
+[node name="ProfileListBackground" type="TextureRect" parent="WindowContainer/WindowContent"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+texture = ExtResource("6_rfnst")
+stretch_mode = 4
+
+[node name="ProfileListScroller" type="ScrollContainer" parent="WindowContainer/WindowContent/ProfileListBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_deadzone = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+
+[node name="ProfileListContainer" type="VBoxContainer" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Profile1" type="TextureRect" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+texture = ExtResource("7_g6nof")
+stretch_mode = 5
+
+[node name="Andi" type="TextureButton" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer/Profile1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.142857
+anchor_right = 0.8125
+anchor_bottom = 0.857143
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Profile2" type="TextureRect" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+texture = ExtResource("7_g6nof")
+stretch_mode = 5
+
+[node name="Andi" type="TextureButton" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer/Profile2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.142857
+anchor_right = 0.8125
+anchor_bottom = 0.857143
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Profile3" type="TextureRect" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+texture = ExtResource("7_g6nof")
+stretch_mode = 5
+
+[node name="Andi" type="TextureButton" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer/Profile3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.142857
+anchor_right = 0.8125
+anchor_bottom = 0.857143
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Profile4" type="TextureRect" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+texture = ExtResource("7_g6nof")
+stretch_mode = 5
+
+[node name="Andi" type="TextureButton" parent="WindowContainer/WindowContent/ProfileListBackground/ProfileListScroller/MarginContainer/ProfileListContainer/Profile4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1875
+anchor_top = 0.142857
+anchor_right = 0.8125
+anchor_bottom = 0.857143
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="ChatContainer" type="VBoxContainer" parent="WindowContainer/WindowContent"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="ChatDisplay" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer"]
+layout_mode = 2
+texture = ExtResource("9_ybb1h")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0106
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChatContentContainer" type="VBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="ChatBubble1" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Profile" type="TextureButton" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="BeeSting" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("10_cblkv")
+stretch_mode = 3
+
+[node name="ChatBody" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble1"]
+custom_minimum_size = Vector2(218, 100)
+layout_mode = 2
+texture = ExtResource("11_b8ktl")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ChatBubble2" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 2
+
+[node name="ChatBody" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble2"]
+custom_minimum_size = Vector2(218, 100)
+layout_mode = 2
+texture = ExtResource("11_b8ktl")
+expand_mode = 1
+flip_h = true
+metadata/_edit_use_anchors_ = true
+
+[node name="BeeSting" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("10_cblkv")
+stretch_mode = 3
+flip_h = true
+
+[node name="ChatBubble3" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Profile" type="TextureButton" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="BeeSting" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("10_cblkv")
+stretch_mode = 3
+
+[node name="ChatBody" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble3"]
+custom_minimum_size = Vector2(309, 0)
+layout_mode = 2
+texture = ExtResource("11_b8ktl")
+expand_mode = 1
+script = ExtResource("12_p5op4")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextMargin" type="MarginContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble3/ChatBody"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChatText" type="RichTextLabel" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer/MarginContainer/ChatContentContainer/ChatBubble3/ChatBody/TextMargin"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_wj4sy")
+theme_override_font_sizes/normal_font_size = 20
+text = "Are you living under a rock? Even Cat know about it"
+vertical_alignment = 1
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0106
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChatContentContainer" type="VBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+
+[node name="ChatBubble1" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Profile" type="TextureButton" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="BeeSting" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble1"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("10_cblkv")
+stretch_mode = 3
+
+[node name="ChatBody" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble1"]
+custom_minimum_size = Vector2(218, 100)
+layout_mode = 2
+texture = ExtResource("11_b8ktl")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ChatBubble2" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 2
+
+[node name="ChatBody" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble2"]
+custom_minimum_size = Vector2(218, 100)
+layout_mode = 2
+texture = ExtResource("11_b8ktl")
+expand_mode = 1
+flip_h = true
+metadata/_edit_use_anchors_ = true
+
+[node name="BeeSting" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("10_cblkv")
+stretch_mode = 3
+flip_h = true
+
+[node name="ChatBubble3" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="Profile" type="TextureButton" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture_normal = ExtResource("8_gemlu")
+metadata/_edit_use_anchors_ = true
+
+[node name="BeeSting" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble3"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+texture = ExtResource("10_cblkv")
+stretch_mode = 3
+
+[node name="ChatBody" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble3"]
+custom_minimum_size = Vector2(309, 0)
+layout_mode = 2
+texture = ExtResource("11_b8ktl")
+expand_mode = 1
+script = ExtResource("12_p5op4")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextMargin" type="MarginContainer" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble3/ChatBody"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ChatText" type="RichTextLabel" parent="WindowContainer/WindowContent/ChatContainer/ChatDisplay/ScrollContainer2/MarginContainer/ChatContentContainer/ChatBubble3/ChatBody/TextMargin"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_wj4sy")
+theme_override_font_sizes/normal_font_size = 20
+text = "Are you living under a rock? Even Cat know about itdadasd"
+vertical_alignment = 1
+
+[node name="InputContainer" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer"]
+layout_mode = 2
+texture = ExtResource("12_wneq3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WindowContainer/WindowContent/ChatContainer/InputContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowContainer/WindowContent/ChatContainer/InputContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="InputBox" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/InputContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_yvb3h")
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowContainer/WindowContent/ChatContainer/InputContainer/HBoxContainer/MarginContainer/InputBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+
+[node name="TextEdit" type="LineEdit" parent="WindowContainer/WindowContent/ChatContainer/InputContainer/HBoxContainer/MarginContainer/InputBox/MarginContainer"]
+layout_mode = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.564962, 0.564962, 0.564962, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wj4sy")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dkmu0")
+placeholder_text = "Type here..."
+flat = true
+caret_blink = true
+
+[node name="TextureRect" type="TextureRect" parent="WindowContainer/WindowContent/ChatContainer/InputContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_wj4sy")
+stretch_mode = 5
